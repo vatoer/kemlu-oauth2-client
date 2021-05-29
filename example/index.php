@@ -7,12 +7,24 @@ use Kemlu\OAuth2\Client\Provider\Kemlu;
 session_start(); // Remove if session.auto_start=1 in php.ini
 
 $provider = new Kemlu([
+    'verify' => false,
     'clientId'     => '5f2ee8dd4dfd62c9c299166494174941',
     'clientSecret' => '43141551e506ac8a4ba3f85bd262ae4e2617181188a39a24c99696c8d456c3cf78cfd4fbcfa2a8263af140d54c099e7b4b9ea8dcaaeae26e3b93111a34ee814f',
-    'redirectUri'  => 'http://localhost:8080/index.php',
+    'redirectUri'  => 'https://127.0.0.1:8001/index.php',
+], [
+    'httpClient'
 ]);
 
-$provider->setIdentityUrl("https:/localhost:8000");
+$provider->setIdentityUrl("https://127.0.0.1:8000");
+
+$guzzyClient = new GuzzleHttp\Client([
+    'defaults' => [
+        \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => 5,
+        \GuzzleHttp\RequestOptions::ALLOW_REDIRECTS => true],
+     \GuzzleHttp\RequestOptions::VERIFY => false,
+]);
+
+$provider->setHttpClient($guzzyClient);
 
 if (!empty($_GET['error'])) {
 
@@ -40,6 +52,8 @@ if (!empty($_GET['error'])) {
         'code' => $_GET['code']
     ]);
 
+    var_dump($token);exit;
+
     // Optional: Now you have a token you can look up a users profile data
     try {
 
@@ -47,7 +61,7 @@ if (!empty($_GET['error'])) {
         $ownerDetails = $provider->getResourceOwner($token);
 
         // Use these details to create a new profile
-        printf('Hello %s!', $ownerDetails->getFirstName());
+        // printf('Hello %s!', $ownerDetails->getFirstName());
 
     } catch (Exception $e) {
 

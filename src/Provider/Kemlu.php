@@ -8,7 +8,7 @@ use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use Psr\Http\Message\ResponseInterface;
 use League\OAuth2\Client\Provider\AbstractProvider;
-
+use UnexpectedValueException;
 /**
  *
  */
@@ -59,10 +59,7 @@ class Kemlu extends AbstractProvider
 
     protected function getAuthorizationParameters(array $options): array
     {
-        if (empty($options['hd']) && $this->hostedDomain) {
-            $options['hd'] = $this->hostedDomain;
-        }
-
+        
         if (empty($options['access_type']) && $this->accessType) {
             $options['access_type'] = $this->accessType;
         }
@@ -129,5 +126,22 @@ class Kemlu extends AbstractProvider
         return $user;
     }
 
+
+    /**
+     * Returns a prepared request for requesting an access token.
+     *
+     * @param array $params Query string parameters
+     * @return RequestInterface
+     */
+    protected function getAccessTokenRequest(array $params)
+    {
+        $method  = $this->getAccessTokenMethod();
+        $url     = $this->getAccessTokenUrl($params);
+        $options = $this->optionProvider->getAccessTokenOptions($this->getAccessTokenMethod(), $params);
+
+        $options['verify'] = false;
+        return $this->getRequest($method, $url, $options);
+
+    }
 
 }
