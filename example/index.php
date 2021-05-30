@@ -1,6 +1,6 @@
 <?php
 require dirname(__DIR__, 1) . '/vendor/autoload.php';
-require dirname(__DIR__, 1).'/src/Provider/Kemlu.php';
+require dirname(__DIR__, 1).'/oauth2-client/src/Provider/Kemlu.php';
 
 use Kemlu\OAuth2\Client\Provider\Kemlu;
 

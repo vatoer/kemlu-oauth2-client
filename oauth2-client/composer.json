@@ -1,0 +1,46 @@
+{
+    "name": "kemlu/oauth2-client",
+    "description": "OAuth 2.0 Client Library",
+    "license": "MIT",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "league/oauth2-client": "^2.6"
+    },
+    "require-dev": {
+    },
+    "keywords": [
+        "oauth",
+        "oauth2",
+        "authorization",
+        "authentication",
+        "idp",
+        "identity",
+        "sso",
+        "single sign on"
+    ],
+    "authors": [
+        {
+            "name": "Fathur Rohman",
+            "email": "fathur.rohman@kemlu.go.id",
+            "homepage": "https://fathur-rohman.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kemlu\\OAuth2\\Client\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kemlu\\OAuth2\\Client\\Test\\": "test/src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-1.x": "1.0.x-dev"
+        }
+    }
+}
