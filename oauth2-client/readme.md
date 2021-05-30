@@ -10,6 +10,8 @@
   - [2.1 Role Base Access Control](#21-role-base-access-control)
 - [3. Issues](#3-issues)
   - [3.1 list of issues related to required packed](#31-list-of-issues-related-to-required-packed)
+- [4. Step By Step](#4-step-by-step)
+  - [4.1. Get Resource Owner](#41-get-resource-owner)
 
 # 1. Introduction
 
@@ -44,3 +46,7 @@ To fix this error, follow the steps below:
 4. Open your php.ini file and insert or update the following line.
    ```curl.cainfo = “/usr/local/etc/httpd/ssl/cacert.cer”```
 </del>
+
+# 4. Step By Step
+
+## 4.1. Get Resource Owner

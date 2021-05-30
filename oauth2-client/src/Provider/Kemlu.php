@@ -54,7 +54,7 @@ class Kemlu extends AbstractProvider
 
     public function getResourceOwnerDetailsUrl(AccessToken $token): string
     {
-        return $this->identityUrl.'/api/v1/userinfo';
+        return $this->identityUrl.'/api/user_infos';
     }
 
     protected function getAuthorizationParameters(array $options): array

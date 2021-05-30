@@ -1,65 +1,27 @@
 <?php
 
 namespace Kemlu\OAuth2\Client\Provider;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 class kemluUser implements ResourceOwnerInterface
 {
     /**
-     * @var array
+     * @var string
      */
     protected $response;
 
     /**
      * @param array $response
      */
-    public function __construct(array $response)
+    public function __construct($response)
     {
         $this->response = $response;
+        $this->response = $this->toArray();
     }
 
     public function getId()
     {
-        return $this->response['sub'];
-    }
-
-    /**
-     * Get preferred display name.
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->response['name'];
-    }
-
-    /**
-     * Get preferred first name.
-     *
-     * @return string|null
-     */
-    public function getFirstName(): ?string
-    {
-        return $this->getResponseValue('given_name');
-    }
-
-    /**
-     * Get preferred last name.
-     *
-     * @return string|null
-     */
-    public function getLastName(): ?string
-    {
-        return $this->getResponseValue('family_name');
-    }
-
-    /**
-     * Get locale.
-     *
-     * @return string|null
-     */
-    public function getLocale(): ?string
-    {
-        return $this->getResponseValue('locale');
+        return $this->response['id'];
     }
 
     /**
@@ -72,25 +34,6 @@ class kemluUser implements ResourceOwnerInterface
         return $this->getResponseValue('email');
     }
 
-    /**
-     * Get hosted domain.
-     *
-     * @return string|null
-     */
-    public function getHostedDomain(): ?string
-    {
-        return $this->getResponseValue('hd');
-    }
-
-    /**
-     * Get avatar image URL.
-     *
-     * @return string|null
-     */
-    public function getAvatar(): ?string
-    {
-        return $this->getResponseValue('picture');
-    }
 
     /**
      * Get user data as an array.
@@ -99,11 +42,12 @@ class kemluUser implements ResourceOwnerInterface
      */
     public function toArray(): array
     {
-        return $this->response;
+        return json_decode($this->response,true);
     }
+
 
     private function getResponseValue($key)
     {
-        return $this->response[$key] ?? null;
+        return $this->response->[$key] ?? null;
     }
 }

@@ -21,7 +21,8 @@ $guzzyClient = new GuzzleHttp\Client([
     'defaults' => [
         \GuzzleHttp\RequestOptions::CONNECT_TIMEOUT => 5,
         \GuzzleHttp\RequestOptions::ALLOW_REDIRECTS => true],
-     \GuzzleHttp\RequestOptions::VERIFY => false,
+        \GuzzleHttp\RequestOptions::VERIFY => false,
+        \GuzzleHttp\RequestOptions::HEADERS => ["Accept" =>"application/json"],
 ]);
 
 $provider->setHttpClient($guzzyClient);
@@ -52,13 +53,14 @@ if (!empty($_GET['error'])) {
         'code' => $_GET['code']
     ]);
 
-    var_dump($token);exit;
 
     // Optional: Now you have a token you can look up a users profile data
     try {
 
         // We got an access token, let's now get the owner details
         $ownerDetails = $provider->getResourceOwner($token);
+
+        var_dump($ownerDetails);
 
         // Use these details to create a new profile
         // printf('Hello %s!', $ownerDetails->getFirstName());
