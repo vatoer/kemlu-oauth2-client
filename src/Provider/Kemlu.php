@@ -17,13 +17,13 @@ class Kemlu extends AbstractProvider
   use BearerAuthorizationTrait;
 
     /**
-     * @var string If set, this will be sent to google as the "access_type" parameter.
+     * @var string If set, this will be sent to kemlu as the "access_type" parameter.
      * @link
      */
     protected $accessType;
 
     /**
-     * @var string If set, this will be sent to google as the "prompt" parameter.
+     * @var string If set, this will be sent to kemlu as the "prompt" parameter.
      */
     protected $prompt;
 
@@ -80,8 +80,8 @@ class Kemlu extends AbstractProvider
 
         $options = parent::getAuthorizationParameters($options);
 
-        // The "approval_prompt" MUST be removed as it is not supported by Google, use "prompt" instead:
-        // https://developers.google.com/identity/protocols/oauth2/openid-connect#prompt
+        // The "approval_prompt" MUST be removed as it is not supported by kemlu, use "prompt" instead:
+        // https://developers.kemlu.com/identity/protocols/oauth2/openid-connect#prompt
         unset($options['approval_prompt']);
 
         return $options;
