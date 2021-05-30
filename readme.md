@@ -34,9 +34,13 @@ this restriction is made to reduce the complexity of the the project and to keep
 
 - Uncaught GuzzleHttp\Exception\RequestException: cURL error 60: SSL certificate problem: self signed certificate in certificate chain 
 
+@link https://stackoverflow.com/questions/56681332/league-oauth2-client-provider-genericprovider-ssl-error?answertab=votes#tab-top  
+
+<del>
 To fix this error, follow the steps below:
 1. Open http://curl.haxx.se/ca/cacert.pem
 2. Copy the entire page and save it as a “cacert.pem”
 3. `mv cacert.cer /usr/local/etc/httpd/ssl` or to other location
 4. Open your php.ini file and insert or update the following line.
    ```curl.cainfo = “/usr/local/etc/httpd/ssl/cacert.cer”```
+</del>
