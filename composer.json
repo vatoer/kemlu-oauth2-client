@@ -1,16 +1,19 @@
 {
-    "name":"kemlu/oauth2client",
-    "author": [
+    "name": "kemlu/oauth2-client",
+    "require": {
+        "league/oauth2-client": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
         {
-            "name": "fathur rohman"
+            "name": "Fathur Rohman",
+            "email": "vatoer.ckplus@gmail.com"
         }
     ],
-    "require": {
-        "league/oauth2-client": "^2.6"
-    },
     "autoload": {
         "psr-4": {
-            "Kemlu\\OAuth2\\Client\\": "src/"
+            "Kemlu\\Oauth2\\Client\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
