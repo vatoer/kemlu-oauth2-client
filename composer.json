@@ -1,5 +1,16 @@
 {
+    "name":"kemlu/oauth2client",
+    "author": [
+        {
+            "name": "fathur rohman"
+        }
+    ],
     "require": {
         "league/oauth2-client": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kemlu\\OAuth2\\Client\\": "src/"
+        }
     }
 }

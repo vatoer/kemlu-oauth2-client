@@ -1,8 +1,10 @@
 <?php
 require dirname(__DIR__, 1) . '/vendor/autoload.php';
-require dirname(__DIR__, 1).'/oauth2-client/src/Provider/Kemlu.php';
 
-use Kemlu\OAuth2\Client\Provider\Kemlu;
+use Kemlu\Oauth2\Client\Provider\Kemlu;
+//require dirname(__DIR__, 1).'/oauth2-client/src/Provider/Kemlu.php';
+
+
 
 session_start(); // Remove if session.auto_start=1 in php.ini
 
@@ -10,12 +12,13 @@ $provider = new Kemlu([
     'verify' => false,
     'clientId'     => '5f2ee8dd4dfd62c9c299166494174941',
     'clientSecret' => '43141551e506ac8a4ba3f85bd262ae4e2617181188a39a24c99696c8d456c3cf78cfd4fbcfa2a8263af140d54c099e7b4b9ea8dcaaeae26e3b93111a34ee814f',
-    'redirectUri'  => 'https://127.0.0.1:8001/index.php',
+    'redirectUri'  => 'https://localhost:8001/index.php',
+    'prompt' => 'none'
 ], [
     'httpClient'
 ]);
 
-$provider->setIdentityUrl("https://127.0.0.1:8000");
+$provider->setIdentityUrl("https://localhost:8000");
 
 $guzzyClient = new GuzzleHttp\Client([
     'defaults' => [
@@ -53,6 +56,9 @@ if (!empty($_GET['error'])) {
         'code' => $_GET['code']
     ]);
 
+
+
+    //var_dump($token->getToken());exit;
 
     // Optional: Now you have a token you can look up a users profile data
     try {

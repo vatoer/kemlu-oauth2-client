@@ -1,9 +1,10 @@
 <?php
 
-namespace Kemlu\OAuth2\Client\Provider;
+namespace Kemlu\Oauth2\Client\Provider;
+
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
-class kemluUser implements ResourceOwnerInterface
+class KemluUser implements ResourceOwnerInterface
 {
     /**
      * @var string

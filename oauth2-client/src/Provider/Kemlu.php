@@ -9,6 +9,7 @@ use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use Psr\Http\Message\ResponseInterface;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use UnexpectedValueException;
+
 /**
  *
  */
@@ -59,7 +60,7 @@ class Kemlu extends AbstractProvider
 
     protected function getAuthorizationParameters(array $options): array
     {
-        
+
         if (empty($options['access_type']) && $this->accessType) {
             $options['access_type'] = $this->accessType;
         }
