@@ -1,7 +1,7 @@
 <?php
 require dirname(__DIR__, 1) . '/vendor/autoload.php';
 
-use Kemlu\Oauth2\Client\Provider\Kemlu;
+use Kemlu\OAuth2\Client\Provider\Kemlu;
 //require dirname(__DIR__, 1).'/oauth2-client/src/Provider/Kemlu.php';
 
 
@@ -13,7 +13,7 @@ $provider = new Kemlu([
     'clientId'     => '5f2ee8dd4dfd62c9c299166494174941',
     'clientSecret' => '43141551e506ac8a4ba3f85bd262ae4e2617181188a39a24c99696c8d456c3cf78cfd4fbcfa2a8263af140d54c099e7b4b9ea8dcaaeae26e3b93111a34ee814f',
     'redirectUri'  => 'https://localhost:8001/index.php',
-    'prompt' => 'none'
+    //'prompt' => 'none'
 ], [
     'httpClient'
 ]);
@@ -58,7 +58,7 @@ if (!empty($_GET['error'])) {
 
 
 
-    //var_dump($token->getToken());exit;
+    print_r($token->getToken());
 
     // Optional: Now you have a token you can look up a users profile data
     try {
@@ -66,7 +66,8 @@ if (!empty($_GET['error'])) {
         // We got an access token, let's now get the owner details
         $ownerDetails = $provider->getResourceOwner($token);
 
-        var_dump($ownerDetails);
+        var_dump($ownerDetails); 
+        //exit;
 
         // Use these details to create a new profile
         // printf('Hello %s!', $ownerDetails->getFirstName());

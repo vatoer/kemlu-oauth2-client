@@ -1,6 +1,6 @@
 <?php
 
-namespace Kemlu\Oauth2\Client\Provider;
+namespace Kemlu\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
@@ -17,7 +17,7 @@ class KemluUser implements ResourceOwnerInterface
     public function __construct($response)
     {
         $this->response = $response;
-        $this->response = $this->toArray();
+        //$this->response = $this->toArray();
     }
 
     public function getId()
@@ -49,6 +49,6 @@ class KemluUser implements ResourceOwnerInterface
 
     private function getResponseValue($key)
     {
-        return $this->response->[$key] ?? null;
+        return $this->response[$key] ?? null;
     }
 }

@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Kemlu\\Oauth2\\Client\\": "src/"
+            "Kemlu\\OAuth2\\Client\\": "oauth2-client/src/"
         }
     },
     "minimum-stability": "dev"
