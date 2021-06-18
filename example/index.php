@@ -13,7 +13,7 @@ $provider = new Kemlu([
     'clientId'     => '5f2ee8dd4dfd62c9c299166494174941',
     'clientSecret' => '43141551e506ac8a4ba3f85bd262ae4e2617181188a39a24c99696c8d456c3cf78cfd4fbcfa2a8263af140d54c099e7b4b9ea8dcaaeae26e3b93111a34ee814f',
     'redirectUri'  => 'https://localhost:8001/index.php',
-    //'prompt' => 'none'
+    //'prompt' => 'none' #uncomment ini biar g usah ada user consent
 ], [
     'httpClient'
 ]);
@@ -57,6 +57,8 @@ if (!empty($_GET['error'])) {
     ]);
 
 
+    var_dump($token);
+
 
     print_r($token->getToken());
 
@@ -66,7 +68,7 @@ if (!empty($_GET['error'])) {
         // We got an access token, let's now get the owner details
         $ownerDetails = $provider->getResourceOwner($token);
 
-        var_dump($ownerDetails); 
+        var_dump($ownerDetails);
         //exit;
 
         // Use these details to create a new profile
@@ -80,8 +82,9 @@ if (!empty($_GET['error'])) {
     }
 
     // Use this to interact with an API on the users behalf
+    echo "<br> TOKEN <br>";
     echo $token->getToken();
-
+    echo "<br> END- TOKEN <br>";
     // Use this to get a new access token if the old one expires
     echo $token->getRefreshToken();
 
